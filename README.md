@@ -76,3 +76,24 @@ Site base path: /israeli-air-quality/.
 ## Sample station
 
 Kikar Safra / Jerusalem region — typically reports NO2, O3, CO, PM10. Station id comes from the Envista API (stationId, e.g. 36).
+## Android (Flutter) app
+
+Play package id: **il.shaiws.airquality**
+
+Sources live in [`mobile/`](mobile/). Store listing draft: [`mobile/STORE_LISTING.md`](mobile/STORE_LISTING.md).
+
+### Build a release App Bundle (.aab)
+
+Prerequisites on the machine: Flutter stable, Android SDK (`ANDROID_HOME`), JDK 17+, and a local upload keystore.
+
+1. Place signing config at `mobile/android/key.properties` (gitignored) pointing at your upload `.jks` (see Flutter docs).
+2. From `mobile/`:
+
+```bash
+flutter pub get
+flutter build appbundle --release
+```
+
+Output: `mobile/build/app/outputs/bundle/release/app-release.aab`
+
+Upload that AAB in Google Play Console (Create app → Production/Internal testing → Create new release). Do not commit `key.properties` or the keystore.
